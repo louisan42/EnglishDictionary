@@ -80,17 +80,17 @@ void insertWord(std::map<std::string, EnglishDictionary>& engDict)
 
     if (!engDict.count(newWord))
     {
-        std::cout << "Enter a meaning of the word \"" << newWord << "\": ";
-        std::getline(std::cin, newMeaning);
+        std::cout << "Enter a meaning of '" << newWord << "' : ";
+        std::getline(std::cin>>std::ws, newMeaning);
 
-        std::cout << "Enter a synonym(similar in meaning) of the word \"" << newWord << "\": ";
-        std::getline(std::cin, newSynonym);
+        std::cout << "Enter a synonym(similar in meaning): ";
+        std::getline(std::cin>>std::ws, newSynonym);
 
-        std::cout << "Enter an antonym(opposite in meaning) of the word \"" << newWord << "\": ";
-        std::getline(std::cin, newAntonym);
+        std::cout << "Enter an antonym(opposite in meaning) of the word: ";
+        std::getline(std::cin>>std::ws, newAntonym);
 
-       std::cout << "Enter a sentence as an example \"" << newWord << "\": ";
-        std::getline(std::cin, newExampleSentence);
+       std::cout << "Enter a sentence as an example: ";
+        std::getline(std::cin>>std::ws, newExampleSentence);
 
         EnglishDictionary newEntry(newWord, newMeaning, newSynonym, newAntonym, newExampleSentence);
         engDict.insert(std::pair<std::string, EnglishDictionary>(newWord, newEntry));
@@ -108,7 +108,7 @@ void removeWord(std::map<std::string, EnglishDictionary>& engDict)
     std::string word;
 
     std::cout << "Enter a word to remove: ";
-    std::getline(std::cin, word);
+    std::getline(std::cin>>std::ws, word);
 
     if (engDict.count(word))
     {
@@ -127,7 +127,7 @@ void searchWord(std::map<std::string, EnglishDictionary> engDict)
     std::string word;
 
     std::cout << "\nEnter a word to search: ";
-    std::getline(std::cin, word);
+    std::getline(std::cin >> std::ws, word);
 
     if (engDict.count(word))
     {
@@ -149,48 +149,50 @@ void updateWord(std::map<std::string, EnglishDictionary>& engDict)
     bool exit = false;
 
     std::cout << "Enter a word to update: ";
-    std::getline(std::cin, word);
+    std::getline(std::cin >> std::ws, word);
 
     if (engDict.count(word))
     {
         auto itr = engDict.find(word);
-        std::cout << "Updating the word " << "'" << itr->first << "'" << std::endl << std::endl;
-        std::cout << "What do you want to update\n"
-            "1. Word\n"
-            "2. Meaning\n"
-            "3. Synonym\n"
-            "4. Antonym\n"
-            "5. Sentence\n";
-        std::cout << "Select entry to update: ";
-        std::cin >> choice;
+        
 
         while (!exit)
         {
+            std::cout << "Updating the word " << "'" << itr->first << "'" << std::endl << std::endl;
+            std::cout << "What do you want to update\n"
+                "1. Word\n"
+                "2. Meaning\n"
+                "3. Synonym\n"
+                "4. Antonym\n"
+                "5. Sentence\n";
+            std::cout << "Select entry to update: ";
+            std::cin >> choice;
+
             switch (choice)
             {
             case 1:
                 std::cout << "Enter new word to update: ";
-                std::getline(std::cin, word);
+                std::getline(std::cin >> std::ws, word);
                 itr->second.setWord(word);
                 break;
             case 2:
                 std::cout << "Enter new meaning to update: ";
-                std::getline(std::cin, meaning);
+                std::getline(std::cin >> std::ws, meaning);
                 itr->second.setMeaning(meaning);
                 break;
             case 3:
                 std::cout << "Enter new synonym to update: ";
-                std::getline(std::cin, synonym);
+                std::getline(std::cin >> std::ws, synonym);
                 itr->second.setSynonym(synonym);
                 break;
             case 4:
                 std::cout << "Enter new antonym to update: ";
-                std::getline(std::cin, antonym);
+                std::getline(std::cin >> std::ws, antonym);
                 itr->second.setAntonym(antonym);
                 break;
             case 5:
                 std::cout << "Enter new sentence to update: ";
-                std::getline(std::cin, sentence);
+                std::getline(std::cin >> std::ws, sentence);
                 itr->second.setExampleSentence(sentence);
                 break;
             case 6:
