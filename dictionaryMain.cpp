@@ -17,11 +17,11 @@ int main()
     std::map<std::string, EnglishDictionary> engDict;
 
     int choice;
-    bool exit = false;
+    bool quit = false;
 
    
 
-   while (!exit)
+   while (!quit)
    {
        std::cout << "*********** MENU *************" << std::endl;
        std::cout << "1. Insert" << std::endl;
@@ -57,7 +57,7 @@ int main()
            break;
 
        case 6:
-           exit = true;
+           quit = true;
            break;
 
        default:
